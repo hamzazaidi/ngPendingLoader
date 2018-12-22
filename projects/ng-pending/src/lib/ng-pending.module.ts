@@ -12,7 +12,7 @@ export const Loaders: ILoaders = {
   rotatingSquare: RotatingSquareComponent
 };
 
-const ConfigService = new InjectionToken<IConfig>('Config');
+//export const ConfigService = new InjectionToken<IConfig>('Config');
 
 @NgModule({
   declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
@@ -21,15 +21,15 @@ const ConfigService = new InjectionToken<IConfig>('Config');
   exports: [ NgPendingDirective  ]
 })
 export class NgPendingModule {
-  static forRoot(config: IConfig): ModuleWithProviders {
-    return {
-      ngModule: NgPendingModule,
-      providers: [
-        {
-          provide: ConfigService,
-          useValue: config
-        }
-      ]
-    };
-  }
+  // static forRoot(config: IConfig): ModuleWithProviders {
+  //   return {
+  //     ngModule: NgPendingModule,
+  //     providers: [
+  //       {
+  //         provide: ConfigService,
+  //         useValue: config
+  //       }
+  //     ]
+  //   };
+  // }
 }

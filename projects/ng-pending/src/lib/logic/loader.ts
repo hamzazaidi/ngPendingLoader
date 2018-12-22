@@ -1,5 +1,5 @@
 import { ComponentFactory, ComponentRef } from '@angular/core';
-import { BouncingLoaderComponent } from '../components';
+import { BouncingLoaderComponent } from '../components/bouncing-loader/bouncing-loader.component';
 import { IEngine } from '../models/engine';
 import { IConfig } from '../models/config';
 export class Loader {
@@ -14,10 +14,9 @@ export class Loader {
     element: HTMLElement;
     constructor(
         public rootElement: HTMLElement,
-        public engine: IEngine,
-        public config: IConfig
+        public engine: IEngine
     ) {
-        const loaderComponent = this.config.component ? this.config.component : BouncingLoaderComponent;
+        const loaderComponent = BouncingLoaderComponent;
         this.componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
     }
 

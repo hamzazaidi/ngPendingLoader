@@ -1,18 +1,56 @@
 import {
   Directive,
+  ViewContainerRef,
+  ComponentFactoryResolver,
+  Input,
+  ElementRef,
   OnChanges,
-  Input
+  Renderer2,
+  Inject
 } from '@angular/core';
+import { Loader } from '../logic/loader';
+import { Overlay } from '../logic/overlay';
+import { Root } from '../logic/root';
+import { IConfig } from '../models/config';
+import { IEngine } from '../models/engine';
+
 
 @Directive({
   selector: '[ngPending]'
 })
 export class NgPendingDirective implements OnChanges {
   @Input() ngPending: boolean;
-  constructor() { }
+  loader: Loader;
+  overlay: Overlay;
+  root: Root;
+  constructor(
+    public viewContainerRef: ViewContainerRef,
+    public factoryResolver: ComponentFactoryResolver,
+    public el: ElementRef,
+    public renderer: Renderer2
+  ) {
+    const engine: IEngine = {
+      viewContainerRef,
+      factoryResolver,
+      renderer
+    };
+
+    this.loader = new Loader(this.el.nativeElement, engine);
+    this.overlay = new Overlay(this.el.nativeElement, engine);
+    this.root = new Root(this.el.nativeElement, engine);
+    this.root.applyStyles();
+  }
 
   ngOnChanges(changes) {
-    console.log(changes);
+    if (!changes.ngPending.currentValue && !changes.ngPending.previousValue) { return; }
+    if (changes.ngPending.currentValue === changes.ngPending.previousValue) { return; }
+    if (changes.ngPending.currentValue) {
+      this.loader.addLoader();
+      this.overlay.createOverlay();
+    } else {
+      this.loader.removeLoader();
+      this.overlay.removeOverlay();
+    }
   }
 
 }
