@@ -3,6 +3,7 @@ import { NgPendingDirective } from './directive/ng-pending.directive';
 import { BouncingLoaderComponent } from './components/bouncing-loader/bouncing-loader.component';
 import { BouncingStringsComponent } from './components/bouncing-strings/bouncing-strings.component';
 import { RotatingSquareComponent } from './components/rotating-square/rotating-square.component';
+import { ConfigService } from './service/configService';
 import { ILoaders } from './models/loaders';
 import { IConfig } from './models/config';
 
@@ -12,7 +13,6 @@ export const Loaders: ILoaders = {
   rotatingSquare: RotatingSquareComponent
 };
 
-export const ConfigService = new InjectionToken<IConfig>('Config');
 
 @NgModule({
   declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgPendingModule } from 'ng-pending';
+import { NgPendingModule, Loaders } from 'ng-pending';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgPendingModule
+    NgPendingModule.forRoot({ color: 'red', component: Loaders.bouncingString })
   ],
   providers: [],
   bootstrap: [AppComponent]

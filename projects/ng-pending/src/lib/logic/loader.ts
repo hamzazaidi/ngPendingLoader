@@ -14,9 +14,10 @@ export class Loader {
     element: HTMLElement;
     constructor(
         public rootElement: HTMLElement,
-        public engine: IEngine
+        public engine: IEngine,
+        public config: IConfig
     ) {
-        const loaderComponent = BouncingLoaderComponent;
+        const loaderComponent = this.config.component ? this.config.component : BouncingLoaderComponent;
         this.componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
     }
 

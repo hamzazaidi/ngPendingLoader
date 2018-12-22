@@ -13,7 +13,7 @@ import { Overlay } from '../logic/overlay';
 import { Root } from '../logic/root';
 import { IConfig } from '../models/config';
 import { IEngine } from '../models/engine';
-
+import { ConfigService } from '../service/configService';
 
 @Directive({
   selector: '[ngPending]'
@@ -27,7 +27,8 @@ export class NgPendingDirective implements OnChanges {
     public viewContainerRef: ViewContainerRef,
     public factoryResolver: ComponentFactoryResolver,
     public el: ElementRef,
-    public renderer: Renderer2
+    public renderer: Renderer2,
+    @Inject(ConfigService) public config: IConfig
   ) {
     const engine: IEngine = {
       viewContainerRef,
@@ -35,7 +36,7 @@ export class NgPendingDirective implements OnChanges {
       renderer
     };
 
-    this.loader = new Loader(this.el.nativeElement, engine);
+    this.loader = new Loader(this.el.nativeElement, engine, this.config);
     this.overlay = new Overlay(this.el.nativeElement, engine);
     this.root = new Root(this.el.nativeElement, engine);
     this.root.applyStyles();

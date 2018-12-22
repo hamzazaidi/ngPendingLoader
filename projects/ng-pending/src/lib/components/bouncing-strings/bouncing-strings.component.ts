@@ -26,7 +26,7 @@ import { Component, OnInit } from '@angular/core';
     height: 100%;
     width: 6px;
     display: inline-block;
-
+    margin: 0 1px;
     -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
     animation: sk-stretchdelay 1.2s infinite ease-in-out;
   }
