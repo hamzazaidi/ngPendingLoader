@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NgPendingComponent } from './ng-pending.component';
+import { NgPendingDirective } from './directive/ng-pending.directive';
 
 @NgModule({
-  declarations: [NgPendingComponent],
+  declarations: [NgPendingDirective],
   imports: [
   ],
-  exports: [NgPendingComponent]
+  exports: []
 })
 export class NgPendingModule { }
