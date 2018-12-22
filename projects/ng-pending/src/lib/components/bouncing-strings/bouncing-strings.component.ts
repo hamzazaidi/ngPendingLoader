@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-bouncing-strings',
   template: `
   <div>
     <div class="spinner">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
+      <div class="rect1" [ngStyle]="{ 'background-color': color }"></div>
+      <div class="rect2" [ngStyle]="{ 'background-color': color }"></div>
+      <div class="rect3" [ngStyle]="{ 'background-color': color }"></div>
+      <div class="rect4" [ngStyle]="{ 'background-color': color }"></div>
+      <div class="rect5" [ngStyle]="{ 'background-color': color }"></div>
     </div>
   </div>
   `,
@@ -68,7 +68,7 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class BouncingStringsComponent implements OnInit {
-
+  @Input() color: string;
   constructor() { }
 
   ngOnInit() {

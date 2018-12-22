@@ -23,6 +23,7 @@ export class Loader {
 
     addLoader() {
         this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
+        this.componentRef.instance.color = this.config.color;
         this.element = this.componentRef.location.nativeElement;
         this.styles.forEach(s => this.engine.renderer.setStyle(this.element, s.styleName, s.styleValue));
         this.rootElement.appendChild(this.element);

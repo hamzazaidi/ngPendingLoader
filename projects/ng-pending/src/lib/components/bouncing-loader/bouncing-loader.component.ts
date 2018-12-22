@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-bouncing-loader',
   template: `
   <div>
     <div class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
+      <div class="double-bounce1" [ngStyle]="{ 'background-color': color }"></div>
+      <div class="double-bounce2" [ngStyle]="{ 'background-color': color }"></div>
     </div>
   </div>
   `,
@@ -53,7 +53,7 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class BouncingLoaderComponent implements OnInit {
-
+  @Input() color: string;
   constructor() { }
 
   ngOnInit() {

@@ -1,4 +1,5 @@
-import { NgModule, InjectionToken, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NgPendingDirective } from './directive/ng-pending.directive';
 import { BouncingLoaderComponent } from './components/bouncing-loader/bouncing-loader.component';
 import { BouncingStringsComponent } from './components/bouncing-strings/bouncing-strings.component';
@@ -17,7 +18,7 @@ export const Loaders: ILoaders = {
 @NgModule({
   declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
   entryComponents: [ BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
-  imports: [],
+  imports: [ CommonModule ],
   exports: [ NgPendingDirective  ]
 })
 export class NgPendingModule {
