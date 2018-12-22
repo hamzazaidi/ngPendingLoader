@@ -6,7 +6,7 @@ import { RotatingSquareComponent } from './components/rotating-square/rotating-s
 
 @NgModule({
   declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
-  entryComponents: [  ],
+  entryComponents: [ BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
   imports: [],
   exports: [ NgPendingDirective  ]
 })
