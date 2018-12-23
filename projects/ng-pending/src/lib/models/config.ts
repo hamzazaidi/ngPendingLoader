@@ -1,4 +1,4 @@
 export interface IConfig {
     component?: any;
-    color: string;
+    color?: string;
 }

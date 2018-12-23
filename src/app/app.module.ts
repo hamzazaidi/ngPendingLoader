@@ -1,15 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgPendingModule, Loaders } from 'ng-pending';
+import { NgPendingModule, Loaders, IConfig } from 'ng-pending';
 import { AppComponent } from './app.component';
+import { BlinkerComponent } from './components/blinker/blinker.component';
+
+const config: IConfig = {
+  component: Loaders.bouncingLoader
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BlinkerComponent
   ],
   imports: [
     BrowserModule,
-    NgPendingModule.forRoot({ color: '#0070d2', component: Loaders.rotatingSquare })
+    NgPendingModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]

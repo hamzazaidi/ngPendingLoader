@@ -8,6 +8,7 @@ import { FoldingSquaresComponent } from './components/folding-squares/folding-sq
 import { ConfigService } from './service/configService';
 import { ILoaders } from './models/loaders';
 import { IConfig } from './models/config';
+export { IConfig } from './models/config';
 
 export const Loaders: ILoaders = {
   bouncingLoader: BouncingLoaderComponent,
@@ -16,6 +17,16 @@ export const Loaders: ILoaders = {
   foldingSquares: FoldingSquaresComponent
 };
 
+const initialConfig = {};
+const addComponentsToEntry = (module, component) => {
+  module.decorators.forEach(decoratorFactory => {
+    decoratorFactory.args.forEach(decorator => {
+      if (!decorator.entryComponents.includes(component)) {
+        decorator.entryComponents.push(component);
+      }
+    });
+  });
+};
 
 @NgModule({
   declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent, FoldingSquaresComponent ],
@@ -24,7 +35,8 @@ export const Loaders: ILoaders = {
   exports: [ NgPendingDirective  ]
 })
 export class NgPendingModule {
-  static forRoot(config: IConfig): ModuleWithProviders {
+  static forRoot(config: IConfig = initialConfig): ModuleWithProviders {
+    if (config.component) { addComponentsToEntry(NgPendingModule, config.component); }
     return {
       ngModule: NgPendingModule,
       providers: [
@@ -36,3 +48,4 @@ export class NgPendingModule {
     };
   }
 }
+
