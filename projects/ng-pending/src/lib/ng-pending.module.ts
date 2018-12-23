@@ -4,6 +4,7 @@ import { NgPendingDirective } from './directive/ng-pending.directive';
 import { BouncingLoaderComponent } from './components/bouncing-loader/bouncing-loader.component';
 import { BouncingStringsComponent } from './components/bouncing-strings/bouncing-strings.component';
 import { RotatingSquareComponent } from './components/rotating-square/rotating-square.component';
+import { FoldingSquaresComponent } from './components/folding-squares/folding-squares.component';
 import { ConfigService } from './service/configService';
 import { ILoaders } from './models/loaders';
 import { IConfig } from './models/config';
@@ -11,13 +12,14 @@ import { IConfig } from './models/config';
 export const Loaders: ILoaders = {
   bouncingLoader: BouncingLoaderComponent,
   bouncingString: BouncingStringsComponent,
-  rotatingSquare: RotatingSquareComponent
+  rotatingSquare: RotatingSquareComponent,
+  foldingSquares: FoldingSquaresComponent
 };
 
 
 @NgModule({
-  declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
-  entryComponents: [ BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent ],
+  declarations: [ NgPendingDirective, BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent, FoldingSquaresComponent ],
+  entryComponents: [ BouncingLoaderComponent, BouncingStringsComponent, RotatingSquareComponent, FoldingSquaresComponent ],
   imports: [ CommonModule ],
   exports: [ NgPendingDirective  ]
 })

@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgPendingModule.forRoot({ color: '#6f3592', component: Loaders.bouncingString })
+    NgPendingModule.forRoot({ color: '#0070d2', component: Loaders.rotatingSquare })
   ],
   providers: [],
   bootstrap: [AppComponent]
