@@ -2,7 +2,13 @@ import { ComponentFactory, ComponentRef } from '@angular/core';
 import { BouncingLoaderComponent } from '../components/bouncing-loader/bouncing-loader.component';
 import { IEngine } from '../models/engine';
 import { IConfig } from '../models/config';
+import { ILoaderConfig } from '../models/loaderConfig';
 const defaultColor = '#333';
+const defaultLoaderConfig: ILoaderConfig = {
+    color: '#333',
+    width: '40px',
+    height: '40px'
+};
 export class Loader {
     componentFactory: ComponentFactory<BouncingLoaderComponent>;
     componentRef: ComponentRef<BouncingLoaderComponent>;
@@ -23,9 +29,9 @@ export class Loader {
     }
 
     addLoader() {
-        const color = this.config.color ? this.config.color : defaultColor;
+        const config = { ...defaultLoaderConfig, ...this.config.loaderConfig };
         this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
-        this.componentRef.instance.color = color;
+        this.componentRef.instance.config = config;
         this.element = this.componentRef.location.nativeElement;
         this.styles.forEach(s => this.engine.renderer.setStyle(this.element, s.styleName, s.styleValue));
         this.rootElement.appendChild(this.element);

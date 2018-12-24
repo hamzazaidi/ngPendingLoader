@@ -1,18 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ILoaderConfig } from '../../models/loaderConfig';
 
 @Component({
   selector: 'lib-rotating-square',
   template: `
-  <div class="spinner sk-cube-grid">
-    <div class="sk-cube sk-cube1" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube2" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube3" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube4" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube5" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube6" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube7" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube8" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="sk-cube sk-cube9" [ngStyle]="{ 'background-color': color }"></div>
+  <div class="spinner sk-cube-grid" [ngStyle]="{ 'height': config.height, 'width': config.width }">
+    <div class="sk-cube sk-cube1" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube2" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube3" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube4" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube5" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube6" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube7" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube8" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube9" [ngStyle]="{ 'background-color': config.color }"></div>
   </div>
   `,
   styles: [`
@@ -78,11 +79,10 @@ import { Component, OnInit, Input } from '@angular/core';
   `]
 })
 export class RotatingSquareComponent implements OnInit {
-  @Input() color: string;
+  @Input() config: ILoaderConfig;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.color);
   }
 
 }

@@ -37,7 +37,7 @@ export class NgPendingDirective implements OnChanges {
     };
 
     this.loader = new Loader(this.el.nativeElement, engine, this.config);
-    this.overlay = new Overlay(this.el.nativeElement, engine);
+    this.overlay = new Overlay(this.el.nativeElement, engine, this.config);
     this.root = new Root(this.el.nativeElement, engine);
     this.root.applyStyles();
   }

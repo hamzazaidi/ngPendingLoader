@@ -1,4 +1,8 @@
+import { ILoaderConfig } from './loaderConfig';
+import { IOverlayConfig } from './overlayConfig';
+
 export interface IConfig {
     component?: any;
-    color?: string;
+    loaderConfig?: ILoaderConfig;
+    overlayConfig?: IOverlayConfig;
 }

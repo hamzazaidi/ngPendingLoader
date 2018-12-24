@@ -1,4 +1,5 @@
 import { IEngine } from '../models/engine';
+import { IConfig } from '../models/config';
 export class Overlay {
     styles = [
         { styleName: 'position', styleValue: 'absolute' },
@@ -12,7 +13,8 @@ export class Overlay {
     element: HTMLElement;
     constructor(
         public rootElement: HTMLElement,
-        public engine: IEngine
+        public engine: IEngine,
+        public config: IConfig
     ) {}
     createOverlay() {
         this.element = this.engine.renderer.createElement('div');

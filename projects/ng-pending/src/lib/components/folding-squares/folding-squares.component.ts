@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ILoaderConfig } from '../../models/loaderConfig';
 
 @Component({
   selector: 'lib-folding-squares',
   template: `
-  <div class="spinner">
-    <div class="cube1" [ngStyle]="{ 'background-color': color }"></div>
-    <div class="cube2" [ngStyle]="{ 'background-color': color }"></div>
+  <div class="spinner" [ngStyle]="{ 'height': config.height, 'width': config.width }">
+    <div class="cube1" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="cube2" [ngStyle]="{ 'background-color': config.color }"></div>
   </div>
   `,
   styles: [`
@@ -60,7 +61,7 @@ import { Component, OnInit, Input } from '@angular/core';
   `]
 })
 export class FoldingSquaresComponent implements OnInit {
-  @Input() color: string;
+  @Input() config: ILoaderConfig;
   constructor() { }
 
   ngOnInit() {

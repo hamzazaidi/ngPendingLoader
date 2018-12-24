@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ILoaderConfig } from '../../models/loaderConfig';
 
 @Component({
   selector: 'lib-bouncing-loader',
   template: `
   <div>
-    <div class="spinner">
-      <div class="double-bounce1" [ngStyle]="{ 'background-color': color }"></div>
-      <div class="double-bounce2" [ngStyle]="{ 'background-color': color }"></div>
+    <div class="spinner" [ngStyle]="{ 'height': config.height, 'width': config.width }">
+      <div class="double-bounce1" [ngStyle]="{ 'background-color': config.color }"></div>
+      <div class="double-bounce2" [ngStyle]="{ 'background-color': config.color }"></div>
     </div>
   </div>
   `,
@@ -53,10 +54,11 @@ import { Component, OnInit, Input } from '@angular/core';
   `]
 })
 export class BouncingLoaderComponent implements OnInit {
-  @Input() color: string;
+  @Input() config: ILoaderConfig;
   constructor() { }
 
   ngOnInit() {
+    console.log(this.config);
   }
 
 }
