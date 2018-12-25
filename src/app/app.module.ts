@@ -5,9 +5,11 @@ import { AppComponent } from './app.component';
 import { BlinkerComponent } from './components/blinker/blinker.component';
 
 const config: IConfig = {
-  component: Loaders.bouncingString,
+  component: Loaders.bouncingLoader,
+  loaderConfig: {
+    background: 'maroon'
+  },
   overlayConfig: {
-    background: '#317775',
     opacity: '0.5'
   }
 };

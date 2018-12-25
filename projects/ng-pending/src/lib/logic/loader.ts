@@ -13,7 +13,8 @@ const defaultLoaderConfig: ILoaderConfig = {
 const defaultLoaderPositionConfig = {
     position: 'absolute',
     left: '50%',
-    top: '35%',
+    top: '50%',
+    transform: 'translate(-50%,-50%)',
     'z-index': '9999'
 };
 
