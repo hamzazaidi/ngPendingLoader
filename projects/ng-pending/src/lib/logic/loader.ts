@@ -3,12 +3,20 @@ import { BouncingLoaderComponent } from '../components/bouncing-loader/bouncing-
 import { IEngine } from '../models/engine';
 import { IConfig } from '../models/config';
 import { ILoaderConfig } from '../models/loaderConfig';
-const defaultColor = '#333';
+
 const defaultLoaderConfig: ILoaderConfig = {
-    color: '#333',
+    background: '#333',
     width: '40px',
     height: '40px'
 };
+
+const defaultLoaderPositionConfig = {
+    position: 'absolute',
+    left: '50%',
+    top: '35%',
+    'z-index': '9999'
+};
+
 export class Loader {
     componentFactory: ComponentFactory<BouncingLoaderComponent>;
     componentRef: ComponentRef<BouncingLoaderComponent>;
@@ -29,11 +37,13 @@ export class Loader {
     }
 
     addLoader() {
-        const config = { ...defaultLoaderConfig, ...this.config.loaderConfig };
+        const { background, width, height, ...rest } = { ...this.config.loaderConfig };
+        const loaderConfig = { ...defaultLoaderConfig, background, width, height };
         this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
-        this.componentRef.instance.config = config;
+        this.componentRef.instance.config = loaderConfig;
+        const positionConfig = { ...defaultLoaderPositionConfig, ...rest };
         this.element = this.componentRef.location.nativeElement;
-        this.styles.forEach(s => this.engine.renderer.setStyle(this.element, s.styleName, s.styleValue));
+        Object.entries(positionConfig).forEach(entry => this.engine.renderer.setStyle(this.element, entry[0], entry[1]));
         this.rootElement.appendChild(this.element);
     }
 

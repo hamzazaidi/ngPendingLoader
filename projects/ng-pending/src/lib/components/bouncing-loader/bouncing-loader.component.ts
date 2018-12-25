@@ -6,8 +6,8 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   template: `
   <div>
     <div class="spinner" [ngStyle]="{ 'height': config.height, 'width': config.width }">
-      <div class="double-bounce1" [ngStyle]="{ 'background-color': config.color }"></div>
-      <div class="double-bounce2" [ngStyle]="{ 'background-color': config.color }"></div>
+      <div class="double-bounce1" [ngStyle]="{ 'background-color': config.background }"></div>
+      <div class="double-bounce2" [ngStyle]="{ 'background-color': config.background }"></div>
     </div>
   </div>
   `,

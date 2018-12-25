@@ -1,4 +1,4 @@
 export interface IOverlayConfig {
-    color?: string;
-    opacity?: number;
+    background?: string;
+    opacity?: string;
 }

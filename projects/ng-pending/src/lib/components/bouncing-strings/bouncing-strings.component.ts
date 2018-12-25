@@ -6,11 +6,11 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   template: `
   <div>
     <div class="spinner" [ngStyle]="{ 'height': config.height, 'width': config.width }">
-      <div class="rect1" [ngStyle]="{ 'background-color': config.color }"></div>
-      <div class="rect2" [ngStyle]="{ 'background-color': config.color }"></div>
-      <div class="rect3" [ngStyle]="{ 'background-color': config.color }"></div>
-      <div class="rect4" [ngStyle]="{ 'background-color': config.color }"></div>
-      <div class="rect5" [ngStyle]="{ 'background-color': config.color }"></div>
+      <div class="rect1" [ngStyle]="{ 'background-color': config.background }"></div>
+      <div class="rect2" [ngStyle]="{ 'background-color': config.background }"></div>
+      <div class="rect3" [ngStyle]="{ 'background-color': config.background }"></div>
+      <div class="rect4" [ngStyle]="{ 'background-color': config.background }"></div>
+      <div class="rect5" [ngStyle]="{ 'background-color': config.background }"></div>
     </div>
   </div>
   `,

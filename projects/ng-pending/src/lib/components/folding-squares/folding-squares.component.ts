@@ -5,8 +5,8 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   selector: 'lib-folding-squares',
   template: `
   <div class="spinner" [ngStyle]="{ 'height': config.height, 'width': config.width }">
-    <div class="cube1" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="cube2" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="cube1" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="cube2" [ngStyle]="{ 'background-color': config.background }"></div>
   </div>
   `,
   styles: [`

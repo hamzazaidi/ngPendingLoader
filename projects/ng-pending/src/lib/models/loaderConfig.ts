@@ -1,5 +1,5 @@
 export interface ILoaderConfig {
-    color?: string;
+    background?: string;
     width?: string;
     height?: string;
 }

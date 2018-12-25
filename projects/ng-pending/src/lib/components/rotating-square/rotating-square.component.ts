@@ -5,15 +5,15 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   selector: 'lib-rotating-square',
   template: `
   <div class="spinner sk-cube-grid" [ngStyle]="{ 'height': config.height, 'width': config.width }">
-    <div class="sk-cube sk-cube1" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube2" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube3" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube4" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube5" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube6" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube7" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube8" [ngStyle]="{ 'background-color': config.color }"></div>
-    <div class="sk-cube sk-cube9" [ngStyle]="{ 'background-color': config.color }"></div>
+    <div class="sk-cube sk-cube1" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube2" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube3" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube4" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube5" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube6" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube7" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube8" [ngStyle]="{ 'background-color': config.background }"></div>
+    <div class="sk-cube sk-cube9" [ngStyle]="{ 'background-color': config.background }"></div>
   </div>
   `,
   styles: [`

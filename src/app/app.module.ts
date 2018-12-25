@@ -5,7 +5,11 @@ import { AppComponent } from './app.component';
 import { BlinkerComponent } from './components/blinker/blinker.component';
 
 const config: IConfig = {
-  component: Loaders.bouncingLoader
+  component: Loaders.bouncingString,
+  overlayConfig: {
+    background: '#317775',
+    opacity: '0.5'
+  }
 };
 
 @NgModule({
