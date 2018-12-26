@@ -24,44 +24,45 @@ const defaultMessageConfig = {
 };
 
 export class Loader {
-    componentFactory: ComponentFactory<BouncingLoaderComponent>;
-    componentRef: ComponentRef<BouncingLoaderComponent>;
-    styles = [
-        { styleName: 'position', styleValue: 'absolute' },
-        { styleName: 'left', styleValue: '50%' },
-        { styleName: 'top', styleValue: '35%' },
-        { styleName: 'z-index', styleValue: '9999' }
-    ];
-    element: HTMLElement;
+    componentFactory: ComponentFactory<any>;
+    componentRef: ComponentRef<any>;
+    loaderElement: HTMLElement;
+    messageElement: HTMLElement;
     constructor(
         public rootElement: HTMLElement,
         public engine: IEngine,
         public config: IConfig
     ) {
+        const messageConfig = { ...defaultMessageConfig, ...this.config.messageConfig };
         const loaderComponent = this.config.component ? this.config.component : BouncingLoaderComponent;
         this.componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
+        this.messageElement = this.engine.renderer.createElement('div');
+        this.applyStylesToElement(this.messageElement, messageConfig);
     }
 
-    addLoader({ message }) {
+    updateMessage({ message }) {
+        this.engine.renderer.setProperty(this.messageElement, 'innerHTML', message);
+        this.loaderElement.appendChild(this.messageElement);
+    }
+
+    addLoader() {
         const { background, width, height, ...rest } = { ...this.config.loaderConfig };
         const loaderConfig = { ...defaultLoaderConfig, background, width, height };
+        const positionConfig = { ...defaultLoaderPositionConfig, ...rest };
         this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
         this.componentRef.instance.config = loaderConfig;
-        const positionConfig = { ...defaultLoaderPositionConfig, ...rest };
-        this.element = this.componentRef.location.nativeElement;
-        Object.entries(positionConfig).forEach(entry => this.engine.renderer.setStyle(this.element, entry[0], entry[1]));
-        this.rootElement.appendChild(this.element);
-        if (message) {
-            const messageConfig = { ...defaultMessageConfig, ...this.config.messageConfig };
-            const messageContainer = this.engine.renderer.createElement('div');
-            const messageText = this.engine.renderer.createText(message);
-            Object.entries(messageConfig).forEach(entry => this.engine.renderer.setStyle(messageContainer, entry[0], entry[1]));
-            this.engine.renderer.appendChild(messageContainer, messageText);
-            this.element.appendChild(messageContainer);
-        }
+        this.loaderElement = this.componentRef.location.nativeElement;
+        this.applyStylesToElement(this.loaderElement, positionConfig);
+        this.rootElement.appendChild(this.loaderElement);
     }
 
     removeLoader() {
-        this.rootElement.removeChild(this.element);
+        this.rootElement.removeChild(this.loaderElement);
     }
+
+    private applyStylesToElement(element, styles) {
+        Object.entries(styles).forEach(entry => this.engine.renderer.setStyle(element, entry[0], entry[1]));
+    }
+
 }
+

@@ -8,13 +8,14 @@ import { HeaderComponent } from './components/header/header.component';
 const config: IConfig = {
   component: Loaders.blinkingDots,
   loaderConfig: {
-    background: '#470047'
+    background: '#fff'
   },
   overlayConfig: {
-    opacity: '0.7'
+    background: '#000',
+    opacity: '0.5'
   },
   messageConfig: {
-    color: '#470047',
+    color: '#fff',
     'font-size': '20px'
   }
 };

@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ngPendingLoader';
+  message$: Observable<string>;
   users = [
     {
       'id': 4,
@@ -30,4 +33,9 @@ export class AppComponent {
       'isProcessing': false
     }
   ];
+
+  ngOnInit() {
+    this.message$ = of('Sending email...');
+  }
+
 }

@@ -44,14 +44,20 @@ export class NgPendingDirective implements OnChanges {
   }
 
   ngOnChanges(changes) {
-    if (!changes.ngPending.currentValue && !changes.ngPending.previousValue) { return; }
-    if (changes.ngPending.currentValue === changes.ngPending.previousValue) { return; }
-    if (changes.ngPending.currentValue) {
-      this.loader.addLoader({ message: changes.message && changes.message.currentValue });
-      this.overlay.createOverlay();
-    } else {
-      this.loader.removeLoader();
-      this.overlay.removeOverlay();
+    if (changes.ngPending) {
+      if (!changes.ngPending.currentValue && !changes.ngPending.previousValue) { return; }
+      if (changes.ngPending.currentValue === changes.ngPending.previousValue) { return; }
+      if (changes.ngPending.currentValue) {
+        this.loader.addLoader();
+        this.overlay.createOverlay();
+      } else {
+        this.loader.removeLoader();
+        this.overlay.removeOverlay();
+      }
+    }
+
+    if (changes.message) {
+      this.loader.updateMessage({ message: changes.message.currentValue });
     }
   }
 

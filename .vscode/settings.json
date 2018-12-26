@@ -1,0 +1,9 @@
+{
+    // Controls the font size in pixels.
+    "editor.fontSize": 12,
+
+    // Controls the font family.
+    "editor.fontFamily": "Fira Code iScript",
+    "editor.fontLigatures": true,
+    "workbench.fontAliasing": "antialiased",
+}
