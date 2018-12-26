@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoldingSquaresComponent } from './folding-squares.component';
+import { BlinkingDotsComponent } from './blinking-dots.component';
 
-describe('FoldingSquaresComponent', () => {
-  let component: FoldingSquaresComponent;
-  let fixture: ComponentFixture<FoldingSquaresComponent>;
+describe('BlinkingDotsComponent', () => {
+  let component: BlinkingDotsComponent;
+  let fixture: ComponentFixture<BlinkingDotsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FoldingSquaresComponent ]
+      declarations: [ BlinkingDotsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FoldingSquaresComponent);
+    fixture = TestBed.createComponent(BlinkingDotsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

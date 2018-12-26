@@ -59,7 +59,6 @@ export class BouncingLoaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.config);
   }
 
 }
