@@ -20,6 +20,7 @@ import { ConfigService } from '../service/configService';
 })
 export class NgPendingDirective implements OnChanges {
   @Input() ngPending: boolean;
+  @Input() message: string;
   loader: Loader;
   overlay: Overlay;
   root: Root;
@@ -46,7 +47,7 @@ export class NgPendingDirective implements OnChanges {
     if (!changes.ngPending.currentValue && !changes.ngPending.previousValue) { return; }
     if (changes.ngPending.currentValue === changes.ngPending.previousValue) { return; }
     if (changes.ngPending.currentValue) {
-      this.loader.addLoader();
+      this.loader.addLoader({ message: changes.message && changes.message.currentValue });
       this.overlay.createOverlay();
     } else {
       this.loader.removeLoader();

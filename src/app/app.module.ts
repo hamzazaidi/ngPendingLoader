@@ -6,12 +6,16 @@ import { BlinkerComponent } from './components/blinker/blinker.component';
 import { HeaderComponent } from './components/header/header.component';
 
 const config: IConfig = {
-  component: Loaders.bouncingString,
+  component: Loaders.bouncingLoader,
   loaderConfig: {
     background: '#470047'
   },
   overlayConfig: {
-    opacity: '0.5'
+    opacity: '0.7'
+  },
+  messageConfig: {
+    color: '#470047',
+    'font-size': '20px'
   }
 };
 

@@ -18,6 +18,11 @@ const defaultLoaderPositionConfig = {
     'z-index': '9999'
 };
 
+const defaultMessageConfig = {
+    'font-size': '12px',
+    color: '#000'
+};
+
 export class Loader {
     componentFactory: ComponentFactory<BouncingLoaderComponent>;
     componentRef: ComponentRef<BouncingLoaderComponent>;
@@ -37,7 +42,7 @@ export class Loader {
         this.componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
     }
 
-    addLoader() {
+    addLoader({ message }) {
         const { background, width, height, ...rest } = { ...this.config.loaderConfig };
         const loaderConfig = { ...defaultLoaderConfig, background, width, height };
         this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
@@ -46,6 +51,14 @@ export class Loader {
         this.element = this.componentRef.location.nativeElement;
         Object.entries(positionConfig).forEach(entry => this.engine.renderer.setStyle(this.element, entry[0], entry[1]));
         this.rootElement.appendChild(this.element);
+        if (message) {
+            const messageConfig = { ...defaultMessageConfig, ...this.config.messageConfig };
+            const messageContainer = this.engine.renderer.createElement('div');
+            const messageText = this.engine.renderer.createText(message);
+            Object.entries(messageConfig).forEach(entry => this.engine.renderer.setStyle(messageContainer, entry[0], entry[1]));
+            this.engine.renderer.appendChild(messageContainer, messageText);
+            this.element.appendChild(messageContainer);
+        }
     }
 
     removeLoader() {

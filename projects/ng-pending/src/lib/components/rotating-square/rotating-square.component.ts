@@ -20,6 +20,7 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   .sk-cube-grid {
     width: 40px;
     height: 40px;
+    margin: 0 auto;
   }
   .sk-cube-grid .sk-cube {
     width: 33%;

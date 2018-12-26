@@ -18,6 +18,7 @@ import { ILoaderConfig } from '../../models/loaderConfig';
   .spinner {
     width: 50px;
     height: 40px;
+    margin: 0 auto;
     text-align: center;
     font-size: 10px;
   }
