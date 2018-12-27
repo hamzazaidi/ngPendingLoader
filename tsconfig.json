@@ -21,6 +21,9 @@
       "ng-pending": [
         "dist/ng-pending"
       ],
+      "@ngPendingLoader/ng-pending": [
+        "dist/ng-pending"
+      ],
       "ng-pending/*": [
         "dist/ng-pending/*"
       ]
