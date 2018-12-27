@@ -33,7 +33,6 @@ const components: any[] = [
 })
 export class NgPendingModule {
   static forRoot(config: IConfig = initialConfig): ModuleWithProviders {
-    if (config.component) { manageEntryComponentsOfModule(NgPendingModule, config.component); }
     return {
       ngModule: NgPendingModule,
       providers: [
