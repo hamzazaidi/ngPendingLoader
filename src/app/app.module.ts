@@ -31,6 +31,7 @@ const config: IConfig = {
     NgPendingModule.forRoot(config)
   ],
   providers: [],
+  entryComponents: [ BlinkerComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

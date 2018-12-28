@@ -1,6 +1,6 @@
 {
     // Controls the font size in pixels.
-    "editor.fontSize": 13.5,
+    "editor.fontSize": 14,
     // Controls the font family.
     "editor.fontFamily": "Fira Code iScript",
     "editor.fontLigatures": true,
