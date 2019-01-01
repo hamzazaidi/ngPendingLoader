@@ -21,6 +21,7 @@ import { ConfigService } from '../service/configService';
 export class NgPendingDirective implements OnChanges {
   @Input() ngPending: boolean;
   @Input() message: string;
+  @Input() customConfig: IConfig;
   loader: Loader;
   overlay: Overlay;
   root: Root;
@@ -45,10 +46,9 @@ export class NgPendingDirective implements OnChanges {
 
   ngOnChanges(changes) {
     if (changes.ngPending) {
-      if (!changes.ngPending.currentValue && !changes.ngPending.previousValue) { return; }
-      if (changes.ngPending.currentValue === changes.ngPending.previousValue) { return; }
       if (changes.ngPending.currentValue) {
-        this.loader.addLoader();
+        console.log('Custom Config that is passed =>', this.customConfig);
+        this.loader.addLoader(this.customConfig);
         this.overlay.createOverlay();
       } else {
         this.loader.removeLoader();

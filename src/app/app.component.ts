@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
+import { IConfig, Loaders } from 'ng-pending';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,20 @@ import { Observable, of } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'ngPendingLoader';
   message$: Observable<string>;
+  customConfig: IConfig = {
+    component: Loaders.bouncingString,
+    loaderConfig: {
+      background: '#fff'
+    },
+    overlayConfig: {
+      background: '#000',
+      opacity: '0.4'
+    },
+    messageConfig: {
+      color: '#fff',
+      'font-size': '20px'
+    }
+  };
   users = [
     {
       id: 4,

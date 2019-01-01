@@ -5,7 +5,6 @@ import { BouncingLoaderComponent } from './components/bouncing-loader/bouncing-l
 import { BouncingStringsComponent } from './components/bouncing-strings/bouncing-strings.component';
 import { BlinkingDotsComponent } from './components/blinking-dots/blinking-dots.component';
 import { ConfigService } from './service/configService';
-import { manageEntryComponentsOfModule } from './logic/manageEntryComponents';
 import { ILoaders } from './models/loaders';
 import { IConfig } from './models/config';
 export { ILoaderConfig } from './models/loaderConfig';

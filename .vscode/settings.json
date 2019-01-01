@@ -5,4 +5,5 @@
     "editor.fontFamily": "Fira Code iScript",
     "editor.fontLigatures": true,
     "workbench.fontAliasing": "antialiased",
+    "trailing-spaces.trimOnSave": true
 }

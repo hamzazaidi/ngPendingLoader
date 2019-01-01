@@ -12,7 +12,7 @@ const config: IConfig = {
   },
   overlayConfig: {
     background: '#000',
-    opacity: '0.5'
+    opacity: '0.4'
   },
   messageConfig: {
     color: '#fff',

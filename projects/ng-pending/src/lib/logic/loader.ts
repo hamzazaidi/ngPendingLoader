@@ -24,7 +24,6 @@ const defaultMessageConfig = {
 };
 
 export class Loader {
-    componentFactory: ComponentFactory<any>;
     componentRef: ComponentRef<any>;
     loaderElement: HTMLElement;
     messageElement: HTMLElement;
@@ -34,22 +33,24 @@ export class Loader {
         public config: IConfig
     ) {
         const messageConfig = { ...defaultMessageConfig, ...this.config.messageConfig };
-        const loaderComponent = this.config.component ? this.config.component : BouncingLoaderComponent;
-        this.componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
         this.messageElement = this.engine.renderer.createElement('div');
         this.applyStylesToElement(this.messageElement, messageConfig);
     }
 
     updateMessage({ message }) {
-        this.engine.renderer.setProperty(this.messageElement, 'innerHTML', message);
-        this.loaderElement.appendChild(this.messageElement);
+        if (this.loaderElement) {
+            this.engine.renderer.setProperty(this.messageElement, 'innerHTML', message);
+            this.loaderElement.appendChild(this.messageElement);
+        }
     }
 
-    addLoader() {
+    addLoader(custom: IConfig = null) {
+        const loaderComponent =  custom && custom.component || this.config.component || BouncingLoaderComponent;
         const { background, width, height, ...rest } = { ...this.config.loaderConfig };
         const loaderConfig = { ...defaultLoaderConfig, background, width, height };
         const positionConfig = { ...defaultLoaderPositionConfig, ...rest };
-        this.componentRef = this.engine.viewContainerRef.createComponent(this.componentFactory);
+        const componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
+        this.componentRef = this.engine.viewContainerRef.createComponent(componentFactory);
         this.componentRef.instance.config = loaderConfig;
         this.loaderElement = this.componentRef.location.nativeElement;
         this.applyStylesToElement(this.loaderElement, positionConfig);
@@ -57,7 +58,9 @@ export class Loader {
     }
 
     removeLoader() {
-        this.rootElement.removeChild(this.loaderElement);
+        if (this.loaderElement) {
+            this.rootElement.removeChild(this.loaderElement);
+        }
     }
 
     private applyStylesToElement(element, styles) {

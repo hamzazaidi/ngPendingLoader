@@ -29,7 +29,9 @@ export class Overlay {
     }
 
     removeOverlay() {
-        this.rootElement.removeChild(this.element);
+        if (this.element) {
+            this.rootElement.removeChild(this.element);
+        }
     }
 
 }
