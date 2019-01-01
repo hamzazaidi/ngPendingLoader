@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
       background: 'maroon'
     },
     overlayConfig: {
-      background: '#000',
+      background: '#fff',
       opacity: '0.4'
     },
     messageConfig: {
-      color: '#fff',
-      'font-size': '20px'
+      color: '#000',
+      'font-size': '40px'
     }
   };
   users = [

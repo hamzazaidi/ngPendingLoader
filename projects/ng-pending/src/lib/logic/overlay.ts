@@ -3,7 +3,7 @@ import { IConfig } from '../models/config';
 
 const defaultStyles = {
     background: '#fff',
-    opacity: '0,7',
+    opacity: '0.7',
     position: 'absolute',
     top: '0',
     left: '0',
