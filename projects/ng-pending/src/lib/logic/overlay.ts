@@ -16,13 +16,15 @@ export class Overlay {
     constructor(
         public rootElement: HTMLElement,
         public engine: IEngine,
-        public config: IConfig
+        public rootConfig: IConfig
     ) {}
-    createOverlay() {
-        let styles = Object.assign({}, defaultStyles);
-        if (this.config.overlayConfig) {
-            styles = Object.assign({}, styles, this.config.overlayConfig);
-        }
+    createOverlay(custom: IConfig = null) {
+        // use element level config if defined otherwise use root level config.
+        const overlayConfig = custom && custom.overlayConfig || this.rootConfig.overlayConfig;
+
+        // override any default config with the config previously resolved.
+        const styles = { ...defaultStyles, ...overlayConfig };
+
         this.element = this.engine.renderer.createElement('div');
         Object.entries(styles).forEach(entry => this.engine.renderer.setStyle(this.element, entry[0], entry[1]));
         this.rootElement.appendChild(this.element);

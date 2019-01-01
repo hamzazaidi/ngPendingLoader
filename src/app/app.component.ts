@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   customConfig: IConfig = {
     component: Loaders.bouncingString,
     loaderConfig: {
-      background: '#fff'
+      background: 'maroon'
     },
     overlayConfig: {
       background: '#000',

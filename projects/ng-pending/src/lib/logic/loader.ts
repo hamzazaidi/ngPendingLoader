@@ -30,25 +30,43 @@ export class Loader {
     constructor(
         public rootElement: HTMLElement,
         public engine: IEngine,
-        public config: IConfig
+        public rootConfig: IConfig
     ) {
-        const messageConfig = { ...defaultMessageConfig, ...this.config.messageConfig };
+        /*
+            Creating this element here to keep the reference of the object so that
+            the message can be updated.
+        */
         this.messageElement = this.engine.renderer.createElement('div');
-        this.applyStylesToElement(this.messageElement, messageConfig);
     }
 
-    updateMessage({ message }) {
+    updateMessage(message: string, custom: IConfig = null) {
         if (this.loaderElement) {
+            // use element level config if defined otherwise use root level config.
+            const config = custom && custom.messageConfig || this.rootConfig.messageConfig;
+
+            // override any default config with the config previously resolved.
+            const messageConfig = { ...defaultMessageConfig, ...config };
+
+            this.applyStylesToElement(this.messageElement, messageConfig);
             this.engine.renderer.setProperty(this.messageElement, 'innerHTML', message);
             this.loaderElement.appendChild(this.messageElement);
         }
     }
 
     addLoader(custom: IConfig = null) {
-        const loaderComponent =  custom && custom.component || this.config.component || BouncingLoaderComponent;
-        const { background, width, height, ...rest } = { ...this.config.loaderConfig };
+        // use element level config if defined otherwise use root level config to get the Loader Component.
+        const loaderComponent =  custom && custom.component || this.rootConfig.component || BouncingLoaderComponent;
+
+        // use element level config if defined otherwise use root level config.
+        const finalizeLoaderConfig = custom && custom.loaderConfig || this.rootConfig.loaderConfig;
+
+        /* Spilitting the object using the spread operator to Loader specific styles and loader position styles
+            because custom loader have seprate DOM's for Loader and the container that is positioning the loader.
+            Also override any default config with the config previously resolved. */
+        const { background, width, height, ...rest } = { ...finalizeLoaderConfig };
         const loaderConfig = { ...defaultLoaderConfig, background, width, height };
         const positionConfig = { ...defaultLoaderPositionConfig, ...rest };
+
         const componentFactory = this.engine.factoryResolver.resolveComponentFactory(loaderComponent);
         this.componentRef = this.engine.viewContainerRef.createComponent(componentFactory);
         this.componentRef.instance.config = loaderConfig;

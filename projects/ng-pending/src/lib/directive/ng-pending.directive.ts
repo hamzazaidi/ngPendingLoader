@@ -37,27 +37,39 @@ export class NgPendingDirective implements OnChanges {
       factoryResolver,
       renderer
     };
-
-    this.loader = new Loader(this.el.nativeElement, engine, this.config);
-    this.overlay = new Overlay(this.el.nativeElement, engine, this.config);
+    // Setting up the Anchor element to have correct styles for the loader and overlay to work.
     this.root = new Root(this.el.nativeElement, engine);
     this.root.applyStyles();
+
+    // Instantiating the Loader with root Level config or Default config
+    this.loader = new Loader(this.el.nativeElement, engine, this.config);
+
+    // Instatiating the over where the loader appear in the middle with root level config or Default config
+    this.overlay = new Overlay(this.el.nativeElement, engine, this.config);
+
   }
 
   ngOnChanges(changes) {
     if (changes.ngPending) {
       if (changes.ngPending.currentValue) {
-        console.log('Custom Config that is passed =>', this.customConfig);
+        // Adding the loader with config optionally defined on the element otherwise use the root level config or defualt
         this.loader.addLoader(this.customConfig);
-        this.overlay.createOverlay();
+
+        // Adding the Overlay with config optionally defined on the element otherwise use the root level config or defualt
+        this.overlay.createOverlay(this.customConfig);
       } else {
+        // Removing the Loader
         this.loader.removeLoader();
+
+        // Removing the overlay
         this.overlay.removeOverlay();
       }
     }
 
     if (changes.message) {
-      this.loader.updateMessage({ message: changes.message.currentValue });
+      // Update the message to show next to loader with the config to style message.
+      // Config is optionally defined on the element to override the root or default config.
+      this.loader.updateMessage(changes.message.currentValue, this.customConfig);
     }
   }
 
